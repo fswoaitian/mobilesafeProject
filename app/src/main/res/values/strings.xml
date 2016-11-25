@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">mobilesafe</string>
+    <string name="sample_device_admin">手机卫士</string>
+    <string name="sample_device_admin_description">黑马程序员手机卫士，时刻保护您的手机安全和隐私</string>
+</resources>
