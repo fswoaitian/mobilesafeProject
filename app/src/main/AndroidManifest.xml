@@ -63,7 +63,8 @@
 
         <service android:name=".service.GpsService" />
 
-        <activity android:name=".activity.BlacklistActivity"></activity>
+        <activity android:name=".activity.BlacklistActivity" />
+        <activity android:name=".activity.BlacklistEditActivity"></activity>
     </application>
 
 </manifest>
