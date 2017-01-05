@@ -1,0 +1,83 @@
+package com.itheima.mobilesafe.db;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.itheima.mobilesafe.bean.BlacklistItem;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Administrator on 2017/1/5 0005.
+ */
+
+public class BlacklistDao {
+
+
+    private final BlacklistOpenHelper openHelper;
+
+    public BlacklistDao(Context context) {
+        openHelper = new BlacklistOpenHelper(context);
+    }
+
+    public boolean insert(String number, int type) {
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(BlacklistDbConstants.COLUM_NUMBER, number);
+        values.put(BlacklistDbConstants.COLUM_TYPE,type);
+        long insert = db.insert(BlacklistDbConstants.TABLE_NAME, null, values);
+        db.close();
+        if (insert != -1) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public int delete(String number) {
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+//        sql语句
+//        delete from table where number=?
+        String whereClause=BlacklistDbConstants.COLUM_NUMBER+"=?";
+        String[] whereArgs=new String[]{number};
+        int delete = db.delete(BlacklistDbConstants.TABLE_NAME, whereClause, whereArgs);
+        db.close();
+        return delete;
+    }
+
+    public boolean update(String number, int type) {
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+//        update set type=? where number=?
+        ContentValues values = new ContentValues();
+        values.put(BlacklistDbConstants.COLUM_TYPE,type);
+        String whereClause=BlacklistDbConstants.COLUM_NUMBER+"=?";
+        String[] whereArgs=new String[]{number};
+        int update = db.update(BlacklistDbConstants.TABLE_NAME, values, whereClause, whereArgs);
+        db.close();
+        if (update > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public ArrayList<BlacklistItem> queryAll() {
+        SQLiteDatabase db = openHelper.getReadableDatabase();
+        String[] columns=new String[]{BlacklistDbConstants.COLUM_NUMBER,BlacklistDbConstants.COLUM_TYPE};
+        Cursor cursor = db.query(BlacklistDbConstants.TABLE_NAME, columns, null, null, null, null, null);
+        ArrayList<BlacklistItem> list = new ArrayList<BlacklistItem>();
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String number = cursor.getString(0);
+                int type = cursor.getInt(1);
+                BlacklistItem blacklistItem = new BlacklistItem(number, type);
+                list.add(blacklistItem);
+            }
+            cursor.close();
+        }
+        db.close();
+        return list;
+    }
+}
