@@ -26,6 +26,6 @@ public interface BlacklistDbConstants {
      */
     String COLUM_TYPE = "type";
 
-    String CREATE_TABLE = "create table "+TABLE_NAME+" ( "+COLUM_ID+" integer primary key autoincrement,"+COLUM_NUMBER+" varchar(20) unique,"+COLUM_TYPE+" integer(10))";
+    String CREATE_TABLE = "create table "+TABLE_NAME+" ( "+COLUM_ID+" integer primary key autoincrement,"+COLUM_NUMBER+" varchar(20) unique,"+COLUM_TYPE+" integer "+" ) ";
 }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="12dp"
+    android:background="@android:color/white"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_item_blacklist_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名称"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_item_blacklist_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拦截类型"
+            android:textColor="#666"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/ib_blacklist_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_ib_blacklist_del_bg"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="5dp"
+        />
+
+</RelativeLayout>
