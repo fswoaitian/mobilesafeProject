@@ -107,4 +107,22 @@ public class BlacklistDao {
         return list;
     }
 
+    public int queryType(String number) {
+        SQLiteDatabase db = openHelper.getReadableDatabase();
+//        select type from table where number=?;
+        String[] columns=new String[]{BlacklistDbConstants.COLUM_TYPE};
+        String selection=BlacklistDbConstants.COLUM_NUMBER+"=?";
+        String[] selectionArgs=new String[]{number};
+        Cursor cursor = db.query(BlacklistDbConstants.TABLE_NAME, columns,selection,selectionArgs,null,null,null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                int type = cursor.getInt(0);
+                cursor.close();
+                db.close();
+                return type;
+
+            }
+        }
+        return BlacklistItem.TYPE_NONE;
+    }
 }

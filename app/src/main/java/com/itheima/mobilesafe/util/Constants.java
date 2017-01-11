@@ -29,4 +29,5 @@ public interface Constants {
      * 开启手机防盗
      */
     String OPEN_SJFD = "open_sjfd";
+
 }
